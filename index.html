@@ -2,197 +2,202 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dropdown on Hover & Focus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clinic Website with Dropdown</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .dropdown-menu {
-      display: none;
-    }
-    .dropdown.open > .dropdown-menu {
+    .group:hover .group-hover\:block {
       display: block;
     }
-    /* Video and overlay styles same as before */
-    .video-container {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      z-index: -1;
-      pointer-events: none;
-      background: black;
+
+    .dropdown-content {
+      display: none;
     }
-    .video-iframe {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 177.77vh;
-      height: 100vh;
-      min-width: 100vw;
-      min-height: 56.25vw;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
+
+    .group:hover .dropdown-content {
+      display: block;
     }
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 0;
-      pointer-events: none;
-    }
+   .youtube-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  overflow: hidden;
+}
+
+.youtube-bg iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130vw;
+  height: 130vh;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border: none;
+}
+
+
   </style>
 </head>
 <body class="relative text-white font-sans">
 
-  <!-- Video Background -->
-  <div class="video-container">
-    <iframe
-      class="video-iframe"
-      src="https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1&mute=1&controls=0&loop=1&playlist=ScMzIvxBSi4&modestbranding=1&showinfo=0&rel=0"
-      frameborder="0"
-      allow="autoplay; fullscreen"
-      allowfullscreen
-    ></iframe>
-  </div>
+  <!-- Background Video -->
+<div class="youtube-bg fixed top-0 left-0 w-full h-full z-[-10] overflow-hidden">
+  <iframe
+    src="https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1&mute=1&controls=0&loop=1&playlist=ScMzIvxBSi4&modestbranding=1&showinfo=0&rel=0"
+    frameborder="0"
+    allow="autoplay; fullscreen"
+    allowfullscreen
+  ></iframe>
+</div>
 
-  <div class="overlay"></div>
 
-  <div class="relative z-10">
+  <!-- Overlay -->
+  <div class="fixed inset-0 bg-black bg-opacity-60 -z-10"></div>
 
-    <!-- Top Header -->
-    <div class="fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-20">
-      <button class="bg-white bg-opacity-20 text-white text-sm px-6 py-2 rounded-full">
-        E-GIFT VOUCHERS
-      </button>
-      <div class="text-5xl font-light tracking-widest">AEON</div>
-      <div class="text-sm">العربية</div>
-    </div>
+  <!-- Header -->
+  <header class="fixed top-0 w-full px-6 py-4 flex items-center justify-between z-20">
+    <!-- Hamburger (visible only on mobile) -->
+    <button id="menu-toggle" class="text-white text-2xl md:hidden">
+      ☰
+    </button>
+ <button class="hidden md:block bg-white bg-opacity-20 text-white text-sm px-6 py-2 rounded-full">
+  E-GIFT VOUCHERS
+</button>
 
-    <!-- Navigation -->
-    <div class="fixed top-[80px] left-0 w-full z-20 flex justify-center">
-      <nav class="flex space-x-8 text-sm font-light uppercase tracking-wide">
-        <a href="#" class="hover:underline underline-offset-4">About Us</a>
+    <!-- Logo -->
+    <div class="text-3xl font-light tracking-widest mx-auto md:mx-0">AEON</div>
 
-        <div class="relative dropdown">
-          <button
-            type="button"
-            class="hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Treatments ▼
-          </button>
-          <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white text-black rounded shadow">
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Facials</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Injectables</a>
-          </div>
-        </div>
+    <!-- Arabic button (hidden on mobile) -->
+    <div class="text-sm  md:block">العربية</div>
+  </header>
 
-        <div class="relative dropdown">
-          <button
-            type="button"
-            class="hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Exclusives ▼
-          </button>
-          <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white text-black rounded shadow">
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Premium Plan</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Membership</a>
-          </div>
-        </div>
+  <!-- Mobile Navigation Menu -->
+  <nav id="mobile-menu" class="fixed top-[64px] left-0 w-full bg-black bg-opacity-90 text-white z-20 hidden md:hidden">
+    <ul class="flex flex-col space-y-4 p-6 text-sm font-light uppercase">
+      <li><a href="#">About Us</a></li>
 
-        <a href="#" class="hover:underline underline-offset-4">Specialists</a>
-        <a href="#" class="hover:underline underline-offset-4">Concierge</a>
+      <!-- Treatments Mobile Dropdown -->
+      <li>
+        <button class="flex justify-between items-center w-full" onclick="toggleMobileDropdown('treatments-dropdown')">
+          Treatments <span>▼</span>
+        </button>
+        <ul id="treatments-dropdown" class="hidden pl-4 mt-2 space-y-2 text-sm">
+          <li><a href="#">Facials</a></li>
+          <li><a href="#">Injectables</a></li>
+        </ul>
+      </li>
 
-        <div class="relative dropdown">
-          <button
-            type="button"
-            class="hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Magazine ▼
-          </button>
-          <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white text-black rounded shadow">
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Issue 1</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Issue 2</a>
-          </div>
-        </div>
+      <!-- Exclusives Mobile Dropdown -->
+      <li>
+        <button class="flex justify-between items-center w-full" onclick="toggleMobileDropdown('exclusives-dropdown')">
+          Exclusives <span>▼</span>
+        </button>
+        <ul id="exclusives-dropdown" class="hidden pl-4 mt-2 space-y-2 text-sm">
+          <li><a href="#">Premium Plan</a></li>
+          <li><a href="#">Membership</a></li>
+        </ul>
+      </li>
 
+      <li><a href="#">Specialists</a></li>
+      <li><a href="#">Concierge</a></li>
+
+      <!-- Magazine Mobile Dropdown -->
+      <li>
+        <button class="flex justify-between items-center w-full" onclick="toggleMobileDropdown('magazine-dropdown')">
+          Magazine <span>▼</span>
+        </button>
+        <ul id="magazine-dropdown" class="hidden pl-4 mt-2 space-y-2 text-sm">
+          <li><a href="#">Issue 1</a></li>
+          <li><a href="#">Issue 2</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#">Book Now </a></li>
+      <li><a href="#">العربية</a></li>
+    </ul>
+  </nav>
+
+  <!-- Desktop Navigation -->
+  <nav class="hidden md:flex fixed top-[80px] left-0 w-full z-20 justify-center bg-transparent">
+    
+    <ul class="flex space-x-8 text-sm font-light uppercase tracking-wide">
+      <li><a href="#" class="hover:underline underline-offset-4">About Us</a></li>
+
+      <li class="relative group">
+        <button class="hover:underline underline-offset-4 flex items-center gap-1">Treatments ▼</button>
+        <ul class="absolute dropdown-content left-0 mt-2 w-48 bg-white text-black rounded shadow group-hover:block">
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Facials</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Injectables</a></li>
+        </ul>
+      </li>
+
+      <li class="relative group">
+        <button class="hover:underline underline-offset-4 flex items-center gap-1">Exclusives ▼</button>
+        <ul class="absolute dropdown-content left-0 mt-2 w-48 bg-white text-black rounded shadow group-hover:block">
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Premium Plan</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Membership</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#" class="hover:underline underline-offset-4">Specialists</a></li>
+      <li><a href="#" class="hover:underline underline-offset-4">Concierge</a></li>
+
+      <li class="relative group">
+        <button class="hover:underline underline-offset-4 flex items-center gap-1">Magazine ▼</button>
+        <ul class="absolute dropdown-content left-0 mt-2 w-48 bg-white text-black rounded shadow group-hover:block">
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Issue 1</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Issue 2</a></li>
+        </ul>
+      </li>
+
+      <li>
         <a href="#" class="hover:underline underline-offset-4 flex items-center gap-1">
-          Book Now <span class="text-base">🔍</span>
+          Book Now <span class="text-base"></span>
         </a>
-      </nav>
-    </div>
+      </li>
+    </ul>
+  </nav>
 
-    <!-- Hero Content -->
-    <div class="relative z-20 flex flex-col items-center justify-center text-center h-screen pt-32">
-      <h2 class="text-4xl md:text-5xl font-light">Centre For</h2>
-      <h1 class="text-5xl md:text-6xl font-light mb-4">Regenerative Wellness</h1>
-      <p class="text-sm md:text-lg mb-6 tracking-widest">
-        THE JOURNEY TO SELF-HEALING & LONGEVITY THROUGH SCIENCE
-      </p>
-      <button class="border border-white px-6 py-3 rounded-full tracking-widest">
-        BOOK APPOINTMENT
-      </button>
+  <!-- Hero Section -->
+  <div class="relative z-10 flex flex-col items-center justify-center text-center h-screen pt-32">
+    <h2 class="text-4xl md:text-5xl font-light">Centre For</h2>
+    <h1 class="text-5xl md:text-6xl font-light mb-4">Regenerative Wellness</h1>
+    <p class="text-sm md:text-lg mb-6 tracking-widest">
+      THE JOURNEY TO SELF-HEALING & LONGEVITY THROUGH SCIENCE
+    </p>
+    <button class="border border-white px-6 py-3 rounded-full tracking-widest">
+      BOOK APPOINTMENT
+    </button>
 
-      <!-- Scroll Icon -->
-      <div class="mt-10">
-        <div class="border-2 border-white rounded-full h-10 w-6 flex items-center justify-center">
-          <div class="h-2 w-1 bg-white animate-bounce"></div>
-        </div>
+    <!-- Scroll Icon -->
+    <div class="mt-10">
+      <div class="border-2 border-white rounded-full h-10 w-6 flex items-center justify-center">
+        <div class="h-2 w-1 bg-white animate-bounce"></div>
       </div>
     </div>
-
   </div>
 
   <!-- WhatsApp Button -->
   <a href="#" class="fixed bottom-5 right-5 bg-green-500 p-3 rounded-full z-50">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-      alt="WhatsApp"
-      class="w-6 h-6"
-    />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-6 h-6"/>
   </a>
 
+  <!-- Toggle Scripts -->
   <script>
-    const dropdowns = document.querySelectorAll('.dropdown');
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-    dropdowns.forEach(dropdown => {
-      const button = dropdown.querySelector('button');
-      const menu = dropdown.querySelector('.dropdown-menu');
-
-      // Open dropdown on mouseenter on dropdown (includes menu)
-      dropdown.addEventListener('mouseenter', () => {
-        dropdown.classList.add('open');
-        button.setAttribute('aria-expanded', 'true');
-      });
-
-      // Close dropdown on mouseleave from dropdown (includes menu)
-      dropdown.addEventListener('mouseleave', () => {
-        dropdown.classList.remove('open');
-        button.setAttribute('aria-expanded', 'false');
-      });
-
-      // Open dropdown on button focus
-      button.addEventListener('focus', () => {
-        dropdown.classList.add('open');
-        button.setAttribute('aria-expanded', 'true');
-      });
-
-      // Close dropdown when focus moves outside dropdown
-      dropdown.addEventListener('focusout', (e) => {
-        // Check if focus is still inside the dropdown
-        if (!dropdown.contains(e.relatedTarget)) {
-          dropdown.classList.remove('open');
-          button.setAttribute('aria-expanded', 'false');
-        }
-      });
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
     });
-  </script>
 
+    function toggleMobileDropdown(id) {
+      const dropdown = document.getElementById(id);
+      dropdown.classList.toggle("hidden");
+    }
+  </script>
 </body>
 </html>
