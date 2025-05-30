@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dropdown on Hover & Focus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .dropdown-menu {
+      display: none;
+    }
+    .dropdown.open > .dropdown-menu {
+      display: block;
+    }
+    /* Video and overlay styles same as before */
+    .video-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+      background: black;
+    }
+    .video-iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 177.77vh;
+      height: 100vh;
+      min-width: 100vw;
+      min-height: 56.25vw;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="relative text-white font-sans">
+
+  <!-- Video Background -->
+  <div class="video-container">
+    <iframe
+      class="video-iframe"
+      src="https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1&mute=1&controls=0&loop=1&playlist=ScMzIvxBSi4&modestbranding=1&showinfo=0&rel=0"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <div class="overlay"></div>
+
+  <div class="relative z-10">
+
+    <!-- Top Header -->
+    <div class="fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-20">
+      <button class="bg-white bg-opacity-20 text-white text-sm px-6 py-2 rounded-full">
+        E-GIFT VOUCHERS
+      </button>
+      <div class="text-5xl font-light tracking-widest">AEON</div>
+      <div class="text-sm">العربية</div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="fixed top-[80px] left-0 w-full z-20 flex justify-center">
+      <nav class="flex space-x-8 text-sm font-light uppercase tracking-wide">
+        <a href="#" class="hover:underline underline-offset-4">About Us</a>
+
+        <div class="relative dropdown">
+          <button
+            type="button"
+            class="hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Treatments ▼
+          </button>
+          <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white text-black rounded shadow">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Facials</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Injectables</a>
+          </div>
+        </div>
+
+        <div class="relative dropdown">
+          <button
+            type="button"
+            class="hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Exclusives ▼
+          </button>
+          <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white text-black rounded shadow">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Premium Plan</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Membership</a>
+          </div>
+        </div>
+
+        <a href="#" class="hover:underline underline-offset-4">Specialists</a>
+        <a href="#" class="hover:underline underline-offset-4">Concierge</a>
+
+        <div class="relative dropdown">
+          <button
+            type="button"
+            class="hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Magazine ▼
+          </button>
+          <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white text-black rounded shadow">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Issue 1</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Issue 2</a>
+          </div>
+        </div>
+
+        <a href="#" class="hover:underline underline-offset-4 flex items-center gap-1">
+          Book Now <span class="text-base">🔍</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-20 flex flex-col items-center justify-center text-center h-screen pt-32">
+      <h2 class="text-4xl md:text-5xl font-light">Centre For</h2>
+      <h1 class="text-5xl md:text-6xl font-light mb-4">Regenerative Wellness</h1>
+      <p class="text-sm md:text-lg mb-6 tracking-widest">
+        THE JOURNEY TO SELF-HEALING & LONGEVITY THROUGH SCIENCE
+      </p>
+      <button class="border border-white px-6 py-3 rounded-full tracking-widest">
+        BOOK APPOINTMENT
+      </button>
+
+      <!-- Scroll Icon -->
+      <div class="mt-10">
+        <div class="border-2 border-white rounded-full h-10 w-6 flex items-center justify-center">
+          <div class="h-2 w-1 bg-white animate-bounce"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WhatsApp Button -->
+  <a href="#" class="fixed bottom-5 right-5 bg-green-500 p-3 rounded-full z-50">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+      alt="WhatsApp"
+      class="w-6 h-6"
+    />
+  </a>
+
+  <script>
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+      const button = dropdown.querySelector('button');
+      const menu = dropdown.querySelector('.dropdown-menu');
+
+      // Open dropdown on mouseenter on dropdown (includes menu)
+      dropdown.addEventListener('mouseenter', () => {
+        dropdown.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
+      });
+
+      // Close dropdown on mouseleave from dropdown (includes menu)
+      dropdown.addEventListener('mouseleave', () => {
+        dropdown.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+      });
+
+      // Open dropdown on button focus
+      button.addEventListener('focus', () => {
+        dropdown.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
+      });
+
+      // Close dropdown when focus moves outside dropdown
+      dropdown.addEventListener('focusout', (e) => {
+        // Check if focus is still inside the dropdown
+        if (!dropdown.contains(e.relatedTarget)) {
+          dropdown.classList.remove('open');
+          button.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dropdown Test</title>
+<style>
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    color: black;
+    width: 150px;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-top: 8px;
+  }
+  .dropdown.open > .dropdown-menu {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="dropdown" style="position: relative; display: inline-block; margin: 20px;">
+    <button class="dropdown-toggle">Treatments ▼</button>
+    <div class="dropdown-menu">
+      <a href="#">Facials</a><br/>
+      <a href="#">Injectables</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  document.querySelectorAll('.dropdown-toggle').forEach(button => {
+    button.addEventListener('click', e => {
+      e.stopPropagation();
+      const dropdown = button.parentElement;
+      dropdown.classList.toggle('open');
+    });
+  });
+
+  window.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
+      dropdown.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
