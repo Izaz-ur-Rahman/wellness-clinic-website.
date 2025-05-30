@@ -112,8 +112,9 @@
           Magazine <span>▼</span>
         </button>
         <ul id="magazine-dropdown" class="hidden pl-4 mt-2 space-y-2 text-sm">
-          <li><a href="#">Issue 1</a></li>
-          <li><a href="#">Issue 2</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Blog</a></li>
+            <li><a href="#">News</a></li>
         </ul>
       </li>
       <li><a href="#">Book Now </a></li>
@@ -126,12 +127,29 @@
     <ul class="flex space-x-8 text-sm font-light uppercase tracking-wide">
       <li><a href="#" class="hover:underline underline-offset-4">About Us</a></li>
       <li class="relative group">
-        <button class="hover:underline underline-offset-4 flex items-center gap-1">Treatments ▼</button>
-        <ul class="absolute dropdown-content left-0 mt-2 w-48 bg-white text-black rounded shadow group-hover:block">
-          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Facials</a></li>
-          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Injectables</a></li>
-        </ul>
-      </li>
+  <button class="hover:underline underline-offset-4 flex items-center gap-1 px-2">Treatments ▼</button>
+  <div class="absolute left-1/2 -translate-x-1/2 mt-4 w-[960px] bg-white text-black rounded shadow-xl p-6 hidden group-hover:flex justify-between space-x-8 z-50">
+    <div class="flex flex-col space-y-2 w-1/3">
+      <h3 class="font-semibold mb-2">Face</h3>
+      <a href="#" class="hover:underline">Facial Rejuvenation</a>
+      <a href="#" class="hover:underline">Botox</a>
+      <a href="#" class="hover:underline">Fillers</a>
+    </div>
+    <div class="flex flex-col space-y-2 w-1/3">
+      <h3 class="font-semibold mb-2">Body</h3>
+      <a href="#" class="hover:underline">Body Sculpting</a>
+      <a href="#" class="hover:underline">Laser Hair Removal</a>
+      <a href="#" class="hover:underline">Stretch Mark Removal</a>
+    </div>
+    <div class="flex flex-col space-y-2 w-1/3">
+      <h3 class="font-semibold mb-2">Wellness</h3>
+      <a href="#" class="hover:underline">IV Drips</a>
+      <a href="#" class="hover:underline">Hormonal Therapy</a>
+      <a href="#" class="hover:underline">Gut Health</a>
+    </div>
+  </div>
+</li>
+
       <li class="relative group">
         <button class="hover:underline underline-offset-4 flex items-center gap-1">Exclusives ▼</button>
         <ul class="absolute dropdown-content left-0 mt-2 w-48 bg-white text-black rounded shadow group-hover:block">
