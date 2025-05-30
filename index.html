@@ -37,7 +37,13 @@
   pointer-events: none;
   border: none;
 }
-
+/* For portrait (mobile), oversize the height more */
+@media (max-aspect-ratio: 9/16) {
+  .youtube-bg iframe {
+    width: 100vw;
+    height: 177.78vw; /* 100 * (9 / 16) */
+  }
+}
 
   </style>
 </head>
