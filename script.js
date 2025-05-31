@@ -19,3 +19,4 @@
     document.getElementById(tabId).classList.remove('hidden');
     document.getElementById(tabId + '-btn').classList.add('bg-gray-100', 'active');
   }
+

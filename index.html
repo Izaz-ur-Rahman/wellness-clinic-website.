@@ -26,6 +26,8 @@
       height: 100%;
       margin: 0;
       padding: 0;
+        overflow-x: hidden;
+
     }
 
     @keyframes glow {
@@ -55,6 +57,30 @@
     <iframe src="video-player.html" frameborder="0" allow="autoplay; fullscreen" allowfullscreen
       style="width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: -10;"></iframe>
   </div>
+<style>
+  .open .bar:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+  .open .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .open .bar:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+  #mobile-menu {
+    transition: transform 1.4s ease, opacity 0.4s ease;
+    transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
 
   <!-- Overlay -->
   <div class="fixed inset-0  -z-10"></div>
@@ -63,6 +89,19 @@
   <header class="fixed top-0 w-full px-6 py-4 grid grid-cols-3 items-center z-20">
     <!-- Left: E-GIFT VOUCHERS -->
     <div class="text-left">
+        <!-- Hamburger Icon only visible on small screens -->
+  <!-- <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+      viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button> -->
+  <button id="menu-toggle" class="md:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1 z-50 relative">
+  <span class="bar w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
+  <span class="bar w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
+  <span class="bar w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
+</button>
+
       <button
         class="hidden md:inline-block text-white text-sm px-6 py-2 rounded-full bg-gradient-to-r from-[#664E1F] via-yellow-500 to-[#664E1F] hover:from-yellow-600 hover:to-[#664E1F] shadow-md transition duration-300 ease-in-out animate-gold-glow">
         E-GIFT VOUCHERS
@@ -81,43 +120,77 @@
   </header>
 
   <!-- Mobile Navigation Menu -->
-  <nav id="mobile-menu" class="fixed top-[64px] left-0 w-full  text-white z-20 hidden md:hidden">
-    <ul class="flex flex-col space-y-4 p-6 text-sm font-light uppercase">
-      <li><a href="#">About Us</a></li>
-      <li>
-        <button class="flex justify-between items-center w-full" onclick="toggleMobileDropdown('treatments-dropdown')">
-          Treatments <span>▼</span>
-        </button>
-        <ul id="treatments-dropdown" class="hidden pl-4 mt-2 space-y-2 text-sm">
-          <li><a href="#">Facials</a></li>
-          <li><a href="#">Injectables</a></li>
-        </ul>
-      </li>
-      <li>
-        <button class="flex justify-between items-center w-full" onclick="toggleMobileDropdown('exclusives-dropdown')">
-          Exclusives <span>▼</span>
-        </button>
-        <ul id="exclusives-dropdown" class="hidden pl-4 mt-2 space-y-2 text-sm">
-          <li><a href="#">Premium Plan</a></li>
-          <li><a href="#">Membership</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Specialists</a></li>
-      <li><a href="#">Concierge</a></li>
-      <li>
-        <button class="flex justify-between items-center w-full" onclick="toggleMobileDropdown('magazine-dropdown')">
-          Magazine <span>▼</span>
-        </button>
-        <ul id="magazine-dropdown" class="hidden pl-4 mt-2 space-y-2 text-sm">
-          <li><a href="#">Press</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">News</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Book Now </a></li>
-      <li><a href="#">العربية</a></li>
-    </ul>
-  </nav>
+  <!-- Mobile Navigation Menu -->
+<nav id="mobile-menu"
+  class="fixed top-[64px] left-0 w-full bg-white/90 backdrop-blur-md z-20 transform -translate-y-full opacity-0 transition-all duration-500 ease-in-out md:hidden">
+  <ul class="flex flex-col space-y-4 p-6 text-sm font-light uppercase text-black">
+    <li><a href="#">About Us</a></li>
+
+    <!-- Treatments Dropdown -->
+    <li>
+      <button class="flex justify-between items-center w-full" onclick="toggleMobileDropdown('treatments-dropdown')">
+        Treatments <span>▼</span>
+      </button>
+      <ul id="treatments-dropdown" class="hidden pl-4 mt-2 space-y-2 text-sm normal-case">
+        <li>
+          <strong>Regenerative Wellness</strong>
+          <ul class="pl-4 space-y-1">
+            <li><a href="#">IV Therapy in Dubai</a></li>
+            <li><a href="#">Wellness Screening</a></li>
+            <li><a href="#">Ozone Therapy</a></li>
+          </ul>
+        </li>
+        <li>
+          <strong>Aesthetics Treatments</strong>
+          <ul class="pl-4 space-y-1">
+            <li><a href="#">Anti-Wrinkle Injection</a></li>
+            <li><a href="#">Lip Fillers in Dubai</a></li>
+            <li><a href="#">Jawline Filler</a></li>
+            <li><a href="#">Hydrafacial in Dubai</a></li>
+            <li><a href="#">Sculptra Fillers</a></li>
+            <li><a href="#">Hollywood Facial</a></li>
+          </ul>
+        </li>
+        <li>
+          <strong>Regenerative Medicine</strong>
+          <ul class="pl-4 space-y-1">
+            <li><a href="#">Stem Cell Injections</a></li>
+            <li><a href="#">Platelet-Rich Plasma (PRP)</a></li>
+            <li><a href="#">Exosome Therapy</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Other links -->
+    <li>
+      <button class="flex justify-between items-center w-full" onclick="toggleMobileDropdown('exclusives-dropdown')">
+        Exclusives <span>▼</span>
+      </button>
+      <ul id="exclusives-dropdown" class="hidden pl-4 mt-2 space-y-2 text-sm normal-case">
+        <li><a href="#">Premium Plan</a></li>
+        <li><a href="#">Membership</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#">Specialists</a></li>
+    <li><a href="#">Concierge</a></li>
+
+    <li>
+      <button class="flex justify-between items-center w-full" onclick="toggleMobileDropdown('magazine-dropdown')">
+        Magazine <span>▼</span>
+      </button>
+      <ul id="magazine-dropdown" class="hidden pl-4 mt-2 space-y-2 text-sm normal-case">
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">News</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#">Book Now</a></li>
+    <!-- <li><a href="#">العربية</a></li> -->
+  </ul>
+</nav>
 
   <!-- Desktop Navigation -->
   <!-- Desktop Navigation -->
@@ -225,33 +298,9 @@
     </ul>
   </nav>
 
+  
   <!-- Hero Section -->
-  <!-- <div class="relative z-10 flex flex-col items-center justify-center text-center min-h-screen px-4">
-
-  <div class="max-w-2xl w-full flex flex-col items-center">
-    <h2 class="text-3xl md:text-3xl font-light">Welcome To The</h2>
-    <h1 class="text-3xl md:text-3xl font-light mb-4">
-      Holistic Approach To Wellness, Longevity & Regeneration
-    </h1>
-    <p class="text-sm mb-6 tracking-widest text-center">
-      Here at Protoclinic, we provide scientifically-backed, personalized wellness and aesthetic programs based on
-      comprehensive diagnostics and cutting-edge regenerative therapies.
-    </p>
-    <button
-      class="text-white text-sm px-6 py-3 rounded-full bg-gradient-to-r from-[#664E1F] via-yellow-500 to-[#664E1F] hover:from-yellow-600 hover:to-[#664E1F] shadow-md transition duration-300 ease-in-out animate-gold-glow tracking-widest">
-      BOOK APPOINTMENT
-    </button>
-  </div>
-
- 
-  <div class="mt-10">
-    <div class="border-2 border-white rounded-full h-10 w-6 flex items-center justify-center">
-      <div class="h-2 w-1 bg-white animate-bounce"></div>
-    </div>
-  </div>
- -->
-  <!-- Hero Section -->
-  <div class="relative z-10 flex items-center justify-center min-h-screen px-4 text-center">
+<div class="relative z-10 flex items-center justify-center h-[calc(115vh)] px-4 text-center">
     <div class="max-w-2xl w-full">
       <h2 class="text-3xl md:text-3xl font-bold">Welcome To The</h2>
       <h1 class="text-3xl md:text-3xl font-bold mb-4">
@@ -282,19 +331,21 @@
 
 
   <!-- Toggle Scripts -->
-  <script>
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
+<script>
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-    menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("open");
+    mobileMenu.classList.toggle("open");
+  });
 
-    function toggleMobileDropdown(id) {
-      const dropdown = document.getElementById(id);
-      dropdown.classList.toggle("hidden");
-    }
-  </script>
+  function toggleMobileDropdown(id) {
+    const dropdown = document.getElementById(id);
+    dropdown.classList.toggle("hidden");
+  }
+</script>
+
   <script src="script.js"></script>
 </body>
 
