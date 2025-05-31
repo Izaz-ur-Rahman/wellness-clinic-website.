@@ -30,35 +30,7 @@
 
     }
 
-    @keyframes glow {
-      0% {
-        box-shadow: 0 0 5px rgba(102, 78, 31, 0.5), 0 0 10px rgba(102, 78, 31, 0.4);
-      }
-
-      50% {
-        box-shadow: 0 0 20px rgba(102, 78, 31, 0.9), 0 0 30px rgba(102, 78, 31, 0.7);
-      }
-
-      100% {
-        box-shadow: 0 0 5px rgba(102, 78, 31, 0.5), 0 0 10px rgba(102, 78, 31, 0.4);
-      }
-    }
-
-    .animate-gold-glow {
-      animation: glow 2s infinite;
-    }
-  </style>
-</head>
-
-<body class="relative text-white font-sans">
-
-  <!-- Background Video -->
-  <div class="youtube-bg">
-    <iframe src="video-player.html" frameborder="0" allow="autoplay; fullscreen" allowfullscreen
-      style="width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: -10;"></iframe>
-  </div>
-<style>
-  .open .bar:nth-child(1) {
+      .open .bar:nth-child(1) {
     transform: rotate(45deg) translateY(8px);
   }
   .open .bar:nth-child(2) {
@@ -80,6 +52,18 @@
     opacity: 1;
     pointer-events: auto;
   }
+  </style>
+</head>
+
+<body class="relative text-white font-sans">
+
+  <!-- Background Video -->
+  <div class="youtube-bg">
+    <iframe src="video-player.html" frameborder="0" allow="autoplay; fullscreen" allowfullscreen
+      style="width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: -10;"></iframe>
+  </div>
+<style>
+
 </style>
 
   <!-- Overlay -->
@@ -102,10 +86,11 @@
   <span class="bar w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
 </button>
 
-      <button
-        class="hidden md:inline-block text-white text-sm px-6 py-2 rounded-full bg-gradient-to-r from-[#664E1F] via-yellow-500 to-[#664E1F] hover:from-yellow-600 hover:to-[#664E1F] shadow-md transition duration-300 ease-in-out animate-gold-glow">
-        E-GIFT VOUCHERS
-      </button>
+  <button
+  class="hidden md:inline-block text-white text-sm px-6 py-2 rounded-full border border-white bg-transparent hover:bg-white hover:text-black transition duration-300 ease-in-out">
+  E-GIFT VOUCHERS
+</button>
+
     </div>
 
     <!-- Center: Logo -->
@@ -310,10 +295,11 @@
         Here at Protoclinic, we provide scientifically-backed, personalized wellness and aesthetic programs based on
         comprehensive diagnostics and cutting-edge regenerative therapies.
       </p>
-      <button
-        class="text-white text-sm px-6 mb-3 py-3 rounded-full bg-gradient-to-r from-[#664E1F] via-yellow-500 to-[#664E1F] hover:from-yellow-600 hover:to-[#664E1F] shadow-md transition duration-300 ease-in-out animate-gold-glow tracking-widest">
-        BOOK APPOINTMENT
-      </button>
+   <button
+  class="text-white text-sm px-6 mb-3 py-3 rounded-full border border-white bg-transparent hover:bg-white hover:text-black transition duration-300 ease-in-out tracking-widest">
+  BOOK APPOINTMENT
+</button>
+
 
       <div class="border-2 border-white mx-auto  rounded-full h-10 w-6 flex items-center justify-center">
         <div class="h-2 w-1 bg-white animate-bounce"></div>
